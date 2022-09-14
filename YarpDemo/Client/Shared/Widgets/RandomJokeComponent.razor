@@ -1,0 +1,16 @@
+﻿
+<h3>Random Joke</h3>
+@inject HttpClient client;
+
+@if(randomJoke != null)
+{
+    <h4>@randomJoke.Setup</h4>
+    <p>@randomJoke.Punchline</p>
+}
+@code {
+    RandomJoke? randomJoke;
+    protected override async Task OnInitializedAsync()
+    {
+        randomJoke = await client.GetFromJsonAsync<RandomJoke>("api/joke");
+    }
+}

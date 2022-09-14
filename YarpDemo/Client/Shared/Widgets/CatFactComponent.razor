@@ -1,0 +1,14 @@
+﻿<h3>Cat fact</h3>
+@inject HttpClient client;
+
+@if(catFact != null)
+{
+    <h4>@catFact.Fact</h4>
+}
+@code {
+    CatFact? catFact;
+    protected override async Task OnInitializedAsync()
+    {
+        catFact = await client.GetFromJsonAsync<CatFact>("api/cats");
+    }
+}
